@@ -419,8 +419,8 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
         CFRelease(_highlightFramesetter);
     }
     
-    if (_longPressGestureRecognizer) {
-        [self removeGestureRecognizer:_longPressGestureRecognizer];
+    if (_tapGestureRecognizer) {
+        [self removeGestureRecognizer:_tapGestureRecognizer];
     }
 }
 
