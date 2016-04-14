@@ -314,7 +314,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 @property (readwrite, nonatomic, strong) TTTAttributedLabelLink *activeLink;
 @property (readwrite, nonatomic, strong) NSArray *accessibilityElements;
 
-- (void) longPressGestureDidFire:(UILongPressGestureRecognizer *)sender;
+- (void)tapGestureDidFire:(UITapGestureRecognizer *)sender;
 @end
 
 @implementation TTTAttributedLabel {
@@ -404,10 +404,10 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     self.activeLinkAttributes = [NSDictionary dictionaryWithDictionary:mutableActiveLinkAttributes];
     self.inactiveLinkAttributes = [NSDictionary dictionaryWithDictionary:mutableInactiveLinkAttributes];
     _extendsLinkTouchArea = YES;
-    _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-                                                                                action:@selector(longPressGestureDidFire:)];
-    self.longPressGestureRecognizer.delegate = self;
-    [self addGestureRecognizer:self.longPressGestureRecognizer];
+    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                action:@selector(tapGestureDidFire:)];
+    self.tapGestureRecognizer.delegate = self;
+    [self addGestureRecognizer:self.tapGestureRecognizer];
 }
 
 - (void)dealloc {
@@ -1579,9 +1579,9 @@ afterInheritingLabelAttributesAndConfiguringWithBlock:(NSMutableAttributedString
 
 #pragma mark - UILongPressGestureRecognizer
 
-- (void)longPressGestureDidFire:(UILongPressGestureRecognizer *)sender {
+- (void)tapGestureDidFire:(UILongPressGestureRecognizer *)sender {
     switch (sender.state) {
-        case UIGestureRecognizerStateBegan: {
+        case UIGestureRecognizerStateEnded: {
             CGPoint touchPoint = [sender locationInView:self];
             TTTAttributedLabelLink *link = [self linkAtPoint:touchPoint];
             

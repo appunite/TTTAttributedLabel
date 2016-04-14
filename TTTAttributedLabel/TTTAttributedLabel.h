@@ -266,9 +266,9 @@ IB_DESIGNABLE
 ///--------------------------
 
 /**
- *  The long-press gesture recognizer used internally by the label.
+ *  The tap gesture recognizer used internally by the label.
  */
-@property (nonatomic, strong, readonly) UILongPressGestureRecognizer *longPressGestureRecognizer;
+@property (nonatomic, strong, readonly) UITapGestureRecognizer *tapGestureRecognizer;
 
 ///--------------------------------------------
 /// @name Calculating Size of Attributed String
